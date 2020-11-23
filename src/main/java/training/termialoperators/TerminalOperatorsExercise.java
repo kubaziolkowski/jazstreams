@@ -37,18 +37,19 @@ public class TerminalOperatorsExercise implements StreamTerminalOperators {
 
     @Override
     public String mergeIntoString(Stream<String> stream) {
-        return stream.collect(Collectors.joining());
+        return stream.collect(Collectors.joining("-"));
     }
 
     @Override
     public int countCharacters(Stream<String> stream) {
-        return 0;
+        String s = stream.reduce("",(x,y)-> x + y);
+        return s.length();
     }
 
     @Override
     public int longestWordLength(Stream<String> stream) {
 
-        return stream.max(s->s.length()).get();
+        return 0 ;
     }
 
     @Override
@@ -58,6 +59,7 @@ public class TerminalOperatorsExercise implements StreamTerminalOperators {
 
     @Override
     public Map<Integer, List<String>> wordsGroupedByLength(Stream<String> stream) {
-        return Map.of();
+
+        return stream.collect(Collectors.groupingBy(s->s.length()));
     }
 }
